@@ -27,9 +27,9 @@ function repartirP(){
     let grados=360/trozos
     let auxiliar=grados;
 
-	let xCentroP1 = 150
+	let xCentroP1 = 200
 	let xCentroP2= mitadW
-	let xCentroP3 = windowWidth-150
+	let xCentroP3 = windowWidth-200
 
 	let yCentro = 100
 
@@ -115,9 +115,9 @@ function draw() {
   ellipseMode(CENTER)
   fill(color( 255, 214, 51 ))
 
-  ellipse(150,100,150,150)
+  ellipse(200,100,150,150)
   ellipse(mitadW, 100, 150, 150)
-  ellipse(windowWidth-150,100,150,150)
+  ellipse(windowWidth-200,100,150,150)
   noLoop()
  
 
