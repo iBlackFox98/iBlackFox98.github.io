@@ -9,45 +9,112 @@ function setup() {
 }
 
 function draw() {
-  algoritmoDDA(0,0,windowWidth,windowHeight)
-  algoritmoDDA(mitadW,0,mitadW,windowHeight)
-  algoritmoDDA(windowWidth,0,0,windowHeight)
-  algoritmoDDA(0,mitadH,windowWidth,mitadH)
+ 
+  AlgoritmoBresenham(0,0,windowWidth,windowHeight)
+ AlgoritmoBresenham(mitadW,0,mitadW,windowHeight)
+ AlgoritmoBresenham(0,mitadH,windowWidth,mitadH)
+
+
+  AlgoritmoBresenham(windowWidth,0,0,windowHeight)
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
   noLoop()
   
 
   
 }
 
-function algoritmoDDA(x1, y1, x2, y2) {
+function AlgoritmoBresenham(x1, y1, x2, y2) {
 
-  let dx=x2-x1
-  let dy=y2-y1
-
-  let limite
-  if(Math.abs(dx)>Math.abs(dy))
-    limite=Math.abs(dx)
-  else
-    limite=Math.abs(dy)
-
-  let xi=dx/limite
-  let yi=dy/limite
-
-  let x=x1
-  let y= y1
+  //Variables para guardar los pasos en x/y
+  let pY
+  let pX
   
-  for(let i=0;i<limite;i++)
-  {
-    point(x, y)
-    x+=xi
-    y+=yi
+
+  // Variables para el Algoritmo Bresenham
+	let x
+	let y
+	let p
+	let incE
+	let incNE
+
+	let dx = x2- x1
+	let dy = y2 - y1
+
+
+  /* determinar que punto usar para empezar*/
+	if(dy < 0) {
+		dy = -dy
+		pY = -1
+	}else{
+		pY = 1
+	}
+
+	if(dx < 0) {
+		dx = -dx
+		pX = -1
+	}else{
+		pX = 1
+	}
+
+	x = x1
+	y = y1
+	
+	point(x,y)
+
+
+	//Se dibujan los puntos de la linea
+	if(dx > dy) {
+
+		p = 2 * dy - dx
+		incE = 2 * dy
+		incNE = 2 * (dy - dx)
+
+		while(x != x2) {
+			x += pX
+
+			if(p < 0) {
+				p += incE
+			}else {
+				y += pY
+				p += incNE
+			}
+
+			point(x,y)
+		}
+	
+	}else{
+
+		p = 2 * dx - dy
+		incE = 2 * dx
+		incNE = 2 * (dx - dy)
+
+		while(y != y2) {
+			y += pY
+
+			if(p < 0) {
+				p += incE
+			}else {
+				x += pX
+				p += incNE
+			}
+
+			point(x,y)
+
+
+    }
   }
-
-
-
-
-  
-
-
 }
-
